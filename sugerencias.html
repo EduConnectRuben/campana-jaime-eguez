@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugerencias - Campaña Jaime Eguez</title>
+    
+    <!-- Iconos y Metadatos -->
+    <link rel="icon" href="images/logo_pdc.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logo_pdc.png">
+    <meta name="description" content="Tu voz es importante. Envíanos tus sugerencias, ideas y necesidades para construir juntos el plan de gobierno para Pailón.">
+
+    <!-- Hojas de Estilo y Fuentes -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="encabezado">
+    <img src="images/logo_candidato.png" alt="Logo Jaime Eguez" class="header-logo"><h1 id="titulo">Prof. Jaime Eguez Roman</h1></a>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only"></span></button>
+        <nav>
+            <ul id="primary-navigation" class="navigation" data-visible="false">
+                <li><a class="nav-link" href="index.html">Inicio</a></li>
+                <li><a class="nav-link active" href="registro.html">Registro</a></li>
+                <li><a class="nav-link" href="sugerencias.html">Sugerencias</a></li>
+                <li><a class="nav-link" href="credencial.html">Credencial</a></li>
+                <li><a class="nav-link" href="admin.html">Admin</a></li>            
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="suggestions" class="page-section">
+            <h2>Envíanos tus Sugerencias</h2>
+            <p>Creemos en un gobierno de puertas abiertas. Tu perspectiva es crucial para atender las verdaderas necesidades de Pailón. Comparte tus ideas, propuestas o las inquietudes de tu comunidad. ¡Te escuchamos!</p>
+            
+            <form id="suggestion-form" class="form-container">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" required placeholder="Tu nombre para saber a quién dirigirnos">
+                </div>
+                <div class="form-group">
+                    <label for="community">Tu Comunidad o Barrio</label>
+                    <input type="text" id="community" name="community" required placeholder="Ej: Comunidad 25 de Mayo">
+                </div>
+                <div class="form-group">
+                    <label for="suggestion">Tu Propuesta o Sugerencia</label>
+                    <textarea id="suggestion" name="suggestion" rows="6" required placeholder="Describe aquí tu idea. Por ejemplo: 'En mi comunidad necesitamos mejorar el alumbrado público en la calle principal...'"></textarea>
+                </div>
+                <button type="submit" class="cta-button">Enviar Sugerencia</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="pie-de-pagina">
+        <p>&copy; 2025 Jaime Eguez Roman - Campaña Alcalde de Pailón. Todos los derechos reservados.</p>
+       <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61582363543962" target="_blank">Facebook</a> |
+          <a href="https://www.tiktok.com/@educacion_pailon" target="_blank">TikTok</a>
+       </div>
+    </footer>
+    
+    <!-- ======================= MODAL DE ÉXITO ======================= -->
+    <div id="success-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <button id="close-success-modal-btn" class="modal-close">&times;</button>
+            <h3 id="success-modal-title">¡Sugerencia Recibida!</h3>
+            <p id="success-modal-message">Muchas gracias por tu valioso aporte. Se abrirá WhatsApp para que nos envíes tu mensaje directamente.</p>
+        </div>
+    </div>
+
+    <!-- ======================= NOTIFICACIÓN ======================= -->
+    <div id="notification" class="notification"></div>
+    
+    <!-- Botón de WhatsApp -->
+     <a href="https://wa.me/59112345678?text=¡Hola!%20Quiero%20sumarme%20a%20la%20campaña%20de%20Jaime%20Eguez." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+
+    <!-- ======================= BLOQUE DE FIREBASE (CORREGIDO) ======================= -->
+<!-- SDK de Firebase (versión de compatibilidad que nuestro script necesita) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+
+<!-- Script de Configuración de Firebase (con tus datos personales) -->
+<script>
+  // Tu configuración web de Firebase para esta aplicación
+  const firebaseConfig = {
+    apiKey: "AIzaSyBdu3kZPFk2dKL4jzsrD7jLtlacwC1j_H4",
+    authDomain: "campana-jaime-eguez.firebaseapp.com",
+    databaseURL: "https://campana-jaime-eguez-default-rtdb.firebaseio.com",
+    projectId: "campana-jaime-eguez",
+    storageBucket: "campana-jaime-eguez.firebasestorage.app",
+    messagingSenderId: "23326843509",
+    appId: "1:23326843509:web:2b0fdb4caf632f7c650e3c",
+    measurementId: "G-SZ4GZ5YP81"
+  };
+
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // Crear una referencia a tu base de datos que usará scripts.js
+  const database = firebase.database();
+</script>
+<!-- ======================= FINALIZA BLOQUE DE FIREBASE ======================= -->
+
+
+<!-- Botón de WhatsApp -->
+     <a href="https://wa.me/59174420831?text=¡Hola%20Frappés%20Valentina!%20Quisiera%20hacer%20un%20pedido." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+
+
+    <!-- CÓDIGO DEL CHATBOT -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="Asistente de Campaña"
+      agent-id="TU_AGENT_ID"
+      language-code="es">
+    </df-messenger>
+    <!-- FIN DEL CÓDIGO DEL CHATBOT -->
+    
+    <script src="js/scripts.js"></script>
+
+<!-- CÓDIGO DEL CHATBOT -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="AsistenteCampanaJaime"
+  agent-id="229dadc6-ca8f-42cb-8eb5-bd1f6c628b35"
+  language-code="es"
+></df-messenger>
+</body>
+</html>

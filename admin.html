@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Campaña Jaime Eguez</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .admin-container { max-width: 1000px; margin: 2rem auto; padding: 2rem; background-color: var(--color-blanco); border-radius: var(--border-radius); box-shadow: var(--box-shadow); }
+        .admin-container h1 { color: var(--color-texto-principal); text-align: center; margin-bottom: 2rem; }
+        #registrations-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        #registrations-table th, #registrations-table td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: middle; }
+        #registrations-table th { background-color: var(--color-fondo-seccion); color: var(--color-texto-principal); font-weight: 700; }
+        .export-button { display: block; width: 100%; margin-bottom: 2rem; text-align: center; }
+        .back-to-home-btn { display: inline-block; text-decoration: none; padding: 0.6rem 1.2rem; background-color: #f0f0f0; color: var(--color-texto-principal); border-radius: 8px; font-weight: 600; transition: background-color 0.3s; margin-bottom: 2rem; }
+        .back-to-home-btn:hover { background-color: #e0e0e0; }
+        .action-btn { cursor: pointer; padding: 5px 10px; border-radius: 5px; color: white; border: none; margin-right: 5px; }
+        .edit-btn { background-color: #2196F3; } /* Azul */
+        .delete-btn { background-color: #f44336; } /* Rojo */
+        .save-btn { background-color: #4CAF50; } /* Verde */
+        .cancel-btn { background-color: #757575; } /* Gris */
+        td input[type="text"] { width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <main class="admin-container">
+        
+        <div id="login-section">
+            <h1>Acceso de Administrador</h1>
+            <form id="admin-login-form" class="form-container" style="padding: 2rem; box-shadow: none; border: 1px solid #eee;">
+                <div class="form-group"><label for="admin-username">Usuario</label><input type="text" id="admin-username" required></div>
+                <div class="form-group"><label for="admin-password">Contraseña</label><input type="password" id="admin-password" required></div>
+                <p id="admin-login-error" style="color: red; display: none;">Usuario o contraseña incorrectos.</p>
+                <button type="submit" class="cta-button">Entrar</button>
+            </form>
+        </div>
+
+        <div id="content-section" style="display: none;">
+            <a href="index.html" class="back-to-home-btn">← Volver al Sitio Principal</a>
+            <h1>Panel de Administración de Registros</h1>
+            <a href="#" id="export-btn" class="cta-button export-button">Exportar a Excel</a>
+            <table id="registrations-table">
+                <thead>
+                    <tr>
+                        <th>Recinto / Comunidad</th>
+                        <th>Nombre Completo</th>
+                        <th>N° de Carnet</th>
+                        <th>Acciones</th> <!-- ¡NUEVA COLUMNA! -->
+                    </tr>
+                </thead>
+                <tbody id="registrations-body"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- BLOQUE DE FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBdu3kZPFk2dKL4jzsrD7jLtlacwC1j_H4",
+        authDomain: "campana-jaime-eguez.firebaseapp.com",
+        databaseURL: "https://campana-jaime-eguez-default-rtdb.firebaseio.com",
+        projectId: "campana-jaime-eguez",
+        storageBucket: "campana-jaime-eguez.firebasestorage.app",
+        messagingSenderId: "23326843509",
+        appId: "1:23326843509:web:2b0fdb4caf632f7c650e3c",
+        measurementId: "G-SZ4GZ5YP81"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const CORRECT_USERNAME = 'JaimeEguez'; 
+            const CORRECT_PASSWORD = 'Pailon2026';
+            const loginSection = document.getElementById('login-section');
+            const contentSection = document.getElementById('content-section');
+            const loginForm = document.getElementById('admin-login-form');
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (document.getElementById('admin-username').value === CORRECT_USERNAME && document.getElementById('admin-password').value === CORRECT_PASSWORD) {
+                    loginSection.style.display = 'none';
+                    contentSection.style.display = 'block';
+                    loadAdminPanel(); 
+                } else {
+                    document.getElementById('admin-login-error').style.display = 'block';
+                }
+            });
+
+            function loadAdminPanel() {
+                const registrationsBody = document.getElementById('registrations-body');
+                const registrationsRef = database.ref('registrations');
+
+                registrationsRef.on('value', (snapshot) => {
+                    registrationsBody.innerHTML = '';
+                    const registrations = snapshot.val();
+                    if (registrations) {
+                        Object.entries(registrations).forEach(([key, reg]) => {
+                            const row = document.createElement('tr');
+                            row.setAttribute('data-key', key);
+                            row.innerHTML = `
+                                <td>${reg.recintoName}</td>
+                                <td>${reg.fullName}</td>
+                                <td>${reg.ciNumber}</td>
+                                <td>
+                                    <button class="action-btn edit-btn">Editar</button>
+                                    <button class="action-btn delete-btn">Eliminar</button>
+                                </td>
+                            `;
+                            registrationsBody.appendChild(row);
+                        });
+                    } else {
+                        registrationsBody.innerHTML = '<tr><td colspan="4">Aún no hay registros.</td></tr>';
+                    }
+                });
+
+                // --- ¡NUEVA LÓGICA PARA EDITAR Y ELIMINAR! ---
+                registrationsBody.addEventListener('click', (e) => {
+                    const target = e.target;
+                    const row = target.closest('tr');
+                    const key = row.getAttribute('data-key');
+
+                    if (target.classList.contains('delete-btn')) {
+                        if (confirm('¿Estás seguro de que quieres eliminar este registro? Esta acción no se puede deshacer.')) {
+                            database.ref(`registrations/${key}`).remove();
+                        }
+                    }
+
+                    if (target.classList.contains('edit-btn')) {
+                        const cells = row.querySelectorAll('td');
+                        cells[0].innerHTML = `<input type="text" value="${cells[0].textContent}">`;
+                        cells[1].innerHTML = `<input type="text" value="${cells[1].textContent}">`;
+                        cells[2].innerHTML = `<input type="text" value="${cells[2].textContent}">`;
+                        cells[3].innerHTML = `
+                            <button class="action-btn save-btn">Guardar</button>
+                            <button class="action-btn cancel-btn">Cancelar</button>
+                        `;
+                    }
+
+                    if (target.classList.contains('cancel-btn')) {
+                        // Simplemente recargamos los datos desde Firebase para cancelar
+                        registrationsRef.once('value'); 
+                    }
+
+                    if (target.classList.contains('save-btn')) {
+                        const inputs = row.querySelectorAll('input[type="text"]');
+                        const updatedData = {
+                            recintoName: inputs[0].value,
+                            fullName: inputs[1].value,
+                            ciNumber: inputs[2].value
+                        };
+                        database.ref(`registrations/${key}`).update(updatedData);
+                    }
+                });
+
+                document.getElementById('export-btn').addEventListener('click', () => { /* ... (código de exportar sin cambios) ... */ });
+            }
+        });
+    </script>
+</body>
+</html>
