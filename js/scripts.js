@@ -281,7 +281,11 @@ const candidatoFotoBase64 = 'iVBORw0KGgoAAAANSUhEUgAABNIAAAbMCAIAAABaLixGAAAACXB
             doc.addImage(qrUrl, 'PNG', (pageWidth / 2) - (qrSize / 2), qrY, qrSize, qrSize);
             
             // Abrir el PDF
-            doc.output('dataurlnewwindow');
+            // --- doc.output('dataurlnewwindow')---
+             // --- MÉTODO COMPATIBLE CON MÓVILES ---
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
 
         } catch (error) {
             console.error("Error al generar el PDF:", error);
