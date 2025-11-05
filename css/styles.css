@@ -1,73 +1,88 @@
 /* ===================================================================
-   VARIABLES Y ESTILOS GLOBALES
+   VARIABLES DE COLORES (TOMADAS DEL NUEVO DISEÑO)
    =================================================================== */
 :root {
-    --color-verde-intenso-1: #43A047;
-    --color-verde-intenso-2: #388E3C;
+    /* Colores base del nuevo diseño */
+    --color-verde-intenso-1: #388E3C;
+    --color-verde-intenso-2: #43A047;
     --color-texto-principal: #2E7D32;
     --color-fondo-crema: #F9FBE7;
     --color-fondo-seccion: #F1F8E9;
-    --color-acento-hover: #FFAB00;
+    --color-acento-hover: #FFD600; /* Amarillo vibrante para acentos */
     --color-blanco: #ffffff;
-    --color-sombra: rgba(0, 0, 0, 0.15);
-    --gradiente-principal: linear-gradient(135deg, var(--color-verde-intenso-1) 0%, var(--color-verde-intenso-2) 100%);
+    
+    /* Degradados del nuevo diseño */
+    --gradiente-encabezado: linear-gradient(to bottom, #388E3C, #43A047, #2E7D32);
+    --gradiente-hover-encabezado: linear-gradient(to right, #43A047, #689F38);
+    
+    /* Fuente y estilos del diseño original que mantenemos */
     --fuente-principal: 'Poppins', sans-serif;
-    --box-shadow: 0 6px 20px var(--color-sombra);
+    --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     --border-radius: 12px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--fuente-principal); background-color: var(--color-fondo-crema); color: var(--color-texto-principal); line-height: 1.7; }
+body { 
+    font-family: var(--fuente-principal); 
+    background: linear-gradient(to bottom, var(--color-fondo-seccion), var(--color-fondo-crema)); /* Fondo con degradado suave */
+    color: var(--color-texto-principal); 
+    line-height: 1.7; 
+}
 .main-content { padding: 2rem 5%; }
 .page-section { margin-bottom: 4rem; }
 .page-section h2 { text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; }
 .page-section > p { text-align: center; max-width: 650px; margin: 0 auto 2.5rem auto; }
 
-.hero { text-align: center; padding: 5rem 1rem; background-image: url('/images/logo_pdc.png'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: var(--border-radius); color: white; margin-bottom: 3rem; }
-.hero h2 { color: rgb(243, 10, 10); font-size: var(--fs-h1); font-weight: 900; text-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
-.hero p { margin-bottom: 2rem; opacity: 0.9; }
+.hero { text-align: center;  background-image: url('/images/logo-compartir.png'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: var(--border-radius); color: white; margin-bottom: 1rem; }
+.hero h1 { color: rgb(5, 105, 10); font-size: 2rem; font-weight: 900; text-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
+.hero h2{color: white; font-size: 1.4rem; padding: 0;}
+.hero p { margin-bottom: 2rem; opacity: 0.9; color: #f8f7f7; }
 
 /* ===================================================================
-   ENCABEZADO Y NAVEGACIÓN (ACTUALIZADO CON LOGO)
+   ENCABEZADO Y NAVEGACIÓN (CON NUEVOS COLORES Y HOVERS)
    =================================================================== */
 .encabezado {
-    background-image: var(--gradiente-principal);
-    padding: 0.75rem 5%; /* Un poco menos de padding vertical para ajustar el logo */
+    background-image: var(--gradiente-encabezado);
+    padding: 0.75rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.45);
+    transition: background 0.6s ease-in-out;
 }
 
-/* Estilo del contenedor del logo y título */
-.logo-link {
-    text-decoration: none;
-    display: flex;
-    align-items: center; /* ¡CLAVE! Alinera verticalmente logo y texto */
-    gap: 0.75rem; /* Espacio entre el logo y el texto */
+.encabezado:hover {
+    background-image: var(--gradiente-hover-encabezado);
 }
 
-/* Estilo del nuevo logo */
 .header-logo {
-    height: 45px; /* Ligeramente más grande para que destaque */
+    height: 45px;
     width: 45px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.5s ease-in-out;
 }
 
-/* Estilo del título principal */
+.header-logo:hover {
+    transform: scale(1.3);
+}
+
 #titulo {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 900;
     color: var(--color-blanco);
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease;
 }
 
-/* Estilos de la navegación (sin cambios) */
+#titulo:hover {
+    color: var(--color-acento-hover);
+}
+
 .navigation {
     list-style: none;
     display: flex;
@@ -91,26 +106,25 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
     left: 0;
     width: 0;
     height: 3px;
-    background: var(--color-blanco);
+    background: var(--color-acento-hover); /* Subrayado amarillo en hover */
     transition: width 0.3s ease;
 }
 
 .nav-link:hover, .nav-link.active {
-    color: var(--color-blanco);
+    color: var(--color-acento-hover); /* Texto amarillo en hover */
 }
 
 .nav-link:hover::after, .nav-link.active::after {
     width: 100%;
+    background: var(--color-acento-hover); /* Línea activa también amarilla */
 }
+
+/* ... (El resto del CSS se mantiene igual, ya que no tiene cambios directos de color o ya es coherente) ... */
 
 .mobile-nav-toggle {
     display: none;
 }
 
-
-/* ===================================================================
-   NUEVO DISEÑO DE TARJETAS DE INFORMACIÓN (INDEX)
-   =================================================================== */
 .info-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,7 +166,7 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Esto asegura que el contenido ocupe el espacio disponible */
+    flex-grow: 1;
     text-align: center;
 }
 
@@ -163,7 +177,7 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
 }
 
 .info-card-content p {
-    flex-grow: 1; /* Empuja el botón hacia abajo */
+    flex-grow: 1;
     margin-bottom: 1.5rem;
     color: #666;
 }
@@ -174,9 +188,6 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
     font-size: 1rem;
 }
 
-/* ===================================================================
-   FORMULARIOS Y FILTROS
-   =================================================================== */
 .menu-controls { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
 .menu-controls input, .menu-controls select { padding: 0.8rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-family: var(--fuente-principal); font-size: 1rem; flex-grow: 1; min-width: 200px; max-width: 300px; }
 .form-container { max-width: 600px; margin: 0 auto; padding: 2.5rem; background: var(--color-blanco); border-radius: var(--border-radius); box-shadow: var(--box-shadow); }
@@ -186,11 +197,28 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--color-verde-intenso-1); box-shadow: 0 0 0 3px rgba(67, 160, 71, 0.3); }
 .form-container .cta-button { width: 100%; margin-top: 1rem; }
 
-/* ===================================================================
-   TARJETAS Y BOTONES
-   =================================================================== */
-.cta-button { background-image: var(--gradiente-principal); color: var(--color-blanco); padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border: none; cursor: pointer; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-block; }
-.cta-button:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); background-image: none; background-color: var(--color-acento-hover); }
+.cta-button {
+    background-image: linear-gradient(to bottom, #689F38, #9CCC65); /* Usando el degradado verde-amarillento de los botones */
+    color: var(--color-blanco);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+    background-image: linear-gradient(to bottom, #558B2F, #7CB342); /* Más oscuro en hover */
+    color: var(--color-blanco);
+}
+
 .card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 .card { background: var(--color-blanco); border-radius: var(--border-radius); box-shadow: var(--box-shadow); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
 .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
@@ -198,28 +226,42 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
 .card-body { padding: 1.5rem; flex-grow: 1; }
 .card-title { font-size: 1.1rem; }
 
-/* ===================================================================
-   MODALES (VENTANAS EMERGENTES)
-   =================================================================== */
 .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.6); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 2000; }
-.modal-backdrop.show { display: flex; } /* ¡ESTA LÍNEA ES CRUCIAL! */
+.modal-backdrop.show { display: flex; }
 .modal-content { background: white; padding: 2.5rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow); position: relative; width: 90%; max-width: 450px; text-align: center; }
 .modal-close { position: absolute; top: 10px; right: 15px; background: 0 0; border: none; font-size: 2rem; cursor: pointer; color: #aaa; }
 .modal-content h3 { font-size: 1.8rem; margin-bottom: 2rem; }
 
-/* ===================================================================
-   PIE DE PÁGINA
-   =================================================================== */
 .whatsapp-float { position: fixed; width: 55px; height: 55px; bottom: 20px; left: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100; display: flex; justify-content: center; align-items: center; transition: transform 0.3s; }
 .whatsapp-float:hover { transform: scale(1.1); }
 
-.pie-de-pagina { background-image: var(--gradiente-principal); color: rgba(255, 255, 255, 0.9); text-align: center; padding: 2.5rem 5%; margin-top: 2rem; }
-.social-links a { color: var(--color-blanco); font-weight: 600; text-decoration: none; margin: 0 0.5rem; transition: opacity 0.3s; opacity: 0.8; }
-.social-links a:hover { opacity: 1; }
+.pie-de-pagina {
+    background-image: var(--gradiente-encabezado);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 2.5rem 5%;
+    margin-top: 2rem;
+    box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.45);
+    transition: background 0.5s ease-in-out;
+}
 
-/* ===================================================================
-   RESPONSIVE (MÓVILES)
-   =================================================================== */
+.pie-de-pagina:hover {
+    background-image: var(--gradiente-hover-encabezado);
+}
+
+.social-links a {
+    color: var(--color-blanco);
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-acento-hover);
+    transform: scale(1.5);
+}
+
 @media (max-width: 800px) {
     .navigation { position: fixed; inset: 0 0 0 40%; flex-direction: column; padding: min(20vh, 10rem) 2rem; background: var(--color-fondo-seccion); backdrop-filter: blur(5px); transform: translateX(100%); transition: transform 350ms ease-out; gap: 2rem; z-index: 1001; }
     .navigation[data-visible="true"] { transform: translateX(0%); }
@@ -228,7 +270,10 @@ body { font-family: var(--fuente-principal); background-color: var(--color-fondo
     .navigation .nav-link::after { background: var(--color-verde-intenso-2); }
     .mobile-nav-toggle { display: block; position: absolute; z-index: 9999; background: transparent; border: 0; width: 2.5rem; aspect-ratio: 1; top: 1rem; right: 2rem; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: center; }
     .mobile-nav-toggle[aria-expanded="true"] { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M6 6l18 18M6 24L24 6'/%3e%3c/svg%3e"); }
-}
-#titulo {
-    font-size: 1rem;
+    .navigation { position: fixed; inset: 0 0 0 60%; flex-direction: column; padding: min(10vh, 10rem) 2rem; background: rgb(248, 241, 209); backdrop-filter: none; transform: translateX(100%); transition: transform 350ms ease-out; gap: 2rem; }
+    #titulo {font-size: 1rem; padding-right: 50px;}
+    .hero h1 {font-size: 1.2rem;padding-top: 100px;}
+    .hero h2{font-size: 0.8rem;}
+    .hero p{font-size: 0.6rem;}
+
 }
