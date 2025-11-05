@@ -283,9 +283,11 @@ const candidatoFotoBase64 = 'iVBORw0KGgoAAAANSUhEUgAABNIAAAbMCAIAAABaLixGAAAACXB
             // Abrir el PDF
             // --- doc.output('dataurlnewwindow')---
              // --- MÉTODO COMPATIBLE CON MÓVILES ---
-        const pdfBlob = doc.output('blob');
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        window.open(pdfUrl, '_blank');
+        //const pdfBlob = doc.output('blob');
+        //const pdfUrl = URL.createObjectURL(pdfBlob);
+        //window.open(pdfUrl, '_blank');
+            // --- MÉTODO DE DESCARGA DIRECTA (PARA MÓVIL Y ESCRITORIO) ---
+        doc.save(`credencial-${fullName.replace(/\s/g, '_')}.pdf`);
 
         } catch (error) {
             console.error("Error al generar el PDF:", error);
