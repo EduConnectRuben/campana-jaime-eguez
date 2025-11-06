@@ -357,7 +357,7 @@ body {
     background-image: var(--gradiente-encabezado);
     color: var(--color-blanco);
     text-align: center;
-    padding: 2.5rem 5%;
+    padding: 1.5rem 5%;
     margin-top: 2rem;
     box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.45);
     transition: background 0.5s ease-in-out;
@@ -397,5 +397,6 @@ body {
     .hero-carousel {height: 200px;}
     .hero-text-overlay h2 {font-size: 1.5rem;padding-top: 250px;}
     .hero-text-overlay p {font-size: 0.9rem;}
+    .pie-de-pagina{font-size: 0.9rem;}
 
 }
