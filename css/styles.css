@@ -33,10 +33,128 @@ body {
 .page-section h2 { text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; }
 .page-section > p { text-align: center; max-width: 650px; margin: 0 auto 2.5rem auto; }
 
-.hero { text-align: center;  background-image: url('/images/logo-compartir.png'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: var(--border-radius); color: white; margin-bottom: 1rem; }
+/*.hero { text-align: center;  background-image: url('/images/logo-compartir.png'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: var(--border-radius); color: white; margin-bottom: 1rem; }
 .hero h1 { color: rgb(5, 105, 10); font-size: 2rem; font-weight: 900; text-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
 .hero h2{color: white; font-size: 1.4rem; padding: 0;}
-.hero p { margin-bottom: 2rem; opacity: 0.9; color: #f8f7f7; }
+.hero p { margin-bottom: 2rem; opacity: 0.9; color: #f8f7f7; }*/
+
+/* ===================================================================
+   ESTILOS PARA EL CARRUSEL DE IMÁGENES
+   =================================================================== */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Altura del carrusel en escritorio */
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+    box-shadow: var(--box-shadow);
+}
+
+.carousel-container {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+}
+
+.hero-text-overlay {
+    position: absolute;
+    inset: 0; /* Abarca todo el contenedor */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0); /* Fondo oscuro semi-transparente para legibilidad */
+    padding: 1rem;
+}
+
+.hero-text-overlay h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.2;
+
+    /* --- CÓDIGO PARA IMAGEN DENTRO DEL TEXTO --- */
+    color: transparent; /* Hace el color del texto invisible */
+    background-image: url('../images/equipo/bandera.png'); /* Ruta a tu imagen */
+    -webkit-background-clip: text; /* Para Chrome, Safari y otros navegadores WebKit */
+    background-clip: text; /* Estándar: recorta el fondo a la forma del texto */
+    background-size: cover; /* Asegura que la imagen cubra todo el texto */
+    background-position: center; /* Centra la imagen de fondo para un mejor efecto */
+}
+.hero-text-overlay p {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    margin: 0.5rem 0;
+    color: #fafafa;
+    line-height: 1.2; 
+    margin: 0; 
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+    left: 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+.carousel-button.next {
+    right: 15px;
+    border-radius: 8px 0 0 8px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+    background-color: white;
+}
 
 /* ===================================================================
    ENCABEZADO Y NAVEGACIÓN (CON NUEVOS COLORES Y HOVERS)
@@ -272,8 +390,12 @@ body {
     .mobile-nav-toggle[aria-expanded="true"] { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M6 6l18 18M6 24L24 6'/%3e%3c/svg%3e"); }
     .navigation { position: fixed; inset: 0 0 0 60%; flex-direction: column; padding: min(10vh, 10rem) 2rem; background: rgb(248, 241, 209); backdrop-filter: none; transform: translateX(100%); transition: transform 350ms ease-out; gap: 2rem; }
     #titulo {font-size: 1rem; padding-right: 50px;}
-    .hero h1 {font-size: 1.2rem;padding-top: 100px;}
+    /*.hero h1 {font-size: 1.2rem;padding-top: 100px;}
     .hero h2{font-size: 0.8rem;}
-    .hero p{font-size: 0.6rem;}
+    .hero p{font-size: 0.6rem;}*/
+    
+    .hero-carousel {height: 350px;}
+    .hero-text-overlay h2 {font-size: 2rem;padding-top: 100px;}
+    .hero-text-overlay p {font-size: 1.2rem;}
 
 }

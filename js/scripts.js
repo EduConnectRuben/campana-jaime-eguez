@@ -362,4 +362,66 @@ const candidatoFotoBase64 = 'iVBORw0KGgoAAAANSUhEUgAABNIAAAbMCAIAAABaLixGAAAACXB
     }
 
     initApp();
+
+    /* ===================================================================
+       LÓGICA PARA EL CARRUSEL DE IMÁGENES
+       =================================================================== */
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        
+        const totalSlides = 15; // El número total de imágenes que tienes
+        let currentSlide = 0;
+
+        for (let i = 1; i <= totalSlides; i++) {
+            const slide = document.createElement('div');
+            slide.classList.add('carousel-slide');
+            const img = document.createElement('img');
+            img.src = `images/carrusel/imagen_${i}.png`;
+            img.alt = `Imagen de campaña ${i}`;
+            slide.appendChild(img);
+            carouselContainer.appendChild(slide);
+
+            const dot = document.createElement('span');
+            dot.classList.add('carousel-dot');
+            dot.dataset.slide = i - 1;
+            dot.addEventListener('click', () => {
+                goToSlide(i - 1);
+            });
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function updateCarousel() {
+            carouselContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        setInterval(nextSlide, 5000);
+
+        updateCarousel();
+    }
+    
 });
