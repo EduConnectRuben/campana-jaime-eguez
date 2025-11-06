@@ -394,8 +394,8 @@ body {
     .hero h2{font-size: 0.8rem;}
     .hero p{font-size: 0.6rem;}*/
     
-    .hero-carousel {height: 350px;}
-    .hero-text-overlay h2 {font-size: 1.5rem;padding-top: 100px;}
+    .hero-carousel {height: 250px;}
+    .hero-text-overlay h2 {font-size: 1.5rem;padding-top: 200px;}
     .hero-text-overlay p {font-size: 0.9rem;}
 
 }
