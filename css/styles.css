@@ -32,7 +32,7 @@ body {
 .page-section { margin-bottom: 4rem; }
 .page-section h2 { text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; }
 .page-section > p { text-align: center; max-width: 650px; margin: 0 auto 2.5rem auto; }
-
+ p{text-align: justify;}
 /*.hero { text-align: center;  background-image: url('/images/logo-compartir.png'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: var(--border-radius); color: white; margin-bottom: 1rem; }
 .hero h1 { color: rgb(5, 105, 10); font-size: 2rem; font-weight: 900; text-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
 .hero h2{color: white; font-size: 1.4rem; padding: 0;}
