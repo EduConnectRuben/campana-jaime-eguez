@@ -7,7 +7,7 @@ Object.assign(installButton.style, {
   top: '60px', // <--- ¡PARA EL BOTON DE INSTALAR ESTE ARRIBA!
   right: '20px',
   padding: '10px 20px',
-  backgroundColor: '#ff6600',
+  backgroundColor: '#3367D6',
   color: 'white',
   border: 'none',
   borderRadius: '5px',
