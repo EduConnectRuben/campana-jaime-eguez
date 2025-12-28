@@ -14,7 +14,6 @@
     /* Degradados: Azul izquierda (30%), Naranja domina (70%) */
     --gradiente-encabezado: linear-gradient(to right, #0056b3 0%, #ff6600 50%, #ff8c00 100%);
     --gradiente-hover-encabezado: linear-gradient(to right, #ff6600  0%, #ff8c00 20%, #004494 100%);
-     /* --gradiente-hover-encabezado: linear-gradient(to right, #004494 0%, #ff8c00 80%,  #ff6600 100%);
   
     /* Fuente y estilos del diseño original que mantenemos */
     --fuente-principal: 'Poppins', sans-serif;
@@ -34,13 +33,9 @@ body {
 .page-section h2 { text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; }
 .page-section > p { text-align: center; max-width: 650px; margin: 0 auto 2.5rem auto; }
  p{text-align: justify;}
-/*.hero { text-align: center;  background-image: url('/images/logo-compartir.png'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: var(--border-radius); color: white; margin-bottom: 1rem; }
-.hero h1 { color: rgb(5, 105, 10); font-size: 2rem; font-weight: 900; text-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
-.hero h2{color: white; font-size: 1.4rem; padding: 0;}
-.hero p { margin-bottom: 2rem; opacity: 0.9; color: #f8f7f7; }*/
 
 /* ===================================================================
-   ESTILOS PARA EL CARRUSEL DE IMÁGENES
+   ESTILOS PARA EL CARRUSEL DE IMÁGENES (ACTUALIZADO: IMAGEN COMPLETA)
    =================================================================== */
 .hero-carousel {
     position: relative;
@@ -50,6 +45,7 @@ body {
     border-radius: var(--border-radius);
     margin-bottom: 3rem;
     box-shadow: var(--box-shadow);
+    background-color: #f88808; /* Fondo azul para rellenar espacios si la imagen es pequeña */
 }
 
 .carousel-container {
@@ -62,12 +58,16 @@ body {
     flex: 0 0 100%;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+    /* AJUSTE CLAVE: contain asegura que la imagen se vea completa sin estirarse ni cortarse */
+    object-fit: contain; 
 }
 
 .hero-text-overlay {
@@ -81,6 +81,7 @@ body {
     color: white;
     background: rgba(0, 0, 0, 0.2); /* Fondo oscuro suave para legibilidad */
     padding: 1rem;
+    pointer-events: none; /* Permite hacer clic en los botones de abajo si es necesario */
 }
 
 .hero-text-overlay h2 {
@@ -396,9 +397,6 @@ body {
     .mobile-nav-toggle[aria-expanded="true"] { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M6 6l18 18M6 24L24 6'/%3e%3c/svg%3e"); }
     .navigation { position: fixed; inset: 0 0 0 60%; flex-direction: column; padding: min(10vh, 10rem) 2rem; background: var(--color-fondo-crema); backdrop-filter: none; transform: translateX(100%); transition: transform 350ms ease-out; gap: 2rem; }
     #titulo {font-size: 1rem; padding-right: 50px;}
-    /*.hero h1 {font-size: 1.2rem;padding-top: 100px;}
-    .hero h2{font-size: 0.8rem;}
-    .hero p{font-size: 0.6rem;}*/
     
     .hero-carousel {height: 200px;}
     .hero-text-overlay h2 {font-size: 1.5rem;padding-top: 250px;}
